@@ -34,7 +34,6 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 #include <DSFML/Graphics/ImageStruct.h>
 #include <DSFML/Graphics/RenderWindowStruct.h>
 #include <DSFML/Window/WindowStruct.h>
-#include <SFML/Graphics/GLCheck.hpp>
 
 //Construct a new texture
 sfTexture* sfTexture_construct(void)
@@ -44,7 +43,7 @@ sfTexture* sfTexture_construct(void)
 
 
 DBool sfTexture_create(sfTexture* texture, DUint width, DUint height)
-{
+{ 
     return texture->This->create(width, height)?DTrue:DFalse;
 
 }
@@ -172,9 +171,4 @@ void sfTexture_bind(const sfTexture* texture)
 DUint sfTexture_getMaximumSize()
 {
     return sf::Texture::getMaximumSize();
-}
-
-void sfTexture_flush()
-{
-	glCheck(glFlush());
 }
