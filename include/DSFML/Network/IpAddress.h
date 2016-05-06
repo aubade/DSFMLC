@@ -42,7 +42,7 @@ All Libraries used by SFML
 
 
 //Create an address from a string
-DSFML_NETWORK_API void sfIpAddress_fromString(const char* address, char* ipAddress);
+DSFML_NETWORK_API void sfIpAddress_fromString(const char* address, size_t addressLength, char* ipAddress);
 
 
 //Create an address from 4 bytes
@@ -54,7 +54,7 @@ DSFML_NETWORK_API void sfIpAddress_fromInteger(DUint address, char* ipAddress);
 
 
 //Get an integer representation of the address
-DSFML_NETWORK_API DUint sfIpAddress_toInteger(const char* ipAddress);
+DSFML_NETWORK_API DUint sfIpAddress_toInteger(const char* ipAddress, size_t length);
 
 
 //Get the computer's local address

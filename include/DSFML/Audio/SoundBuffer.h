@@ -39,7 +39,7 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 
 DSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_construct();
 
-DSFML_AUDIO_API DBool sfSoundBuffer_loadFromFile(sfSoundBuffer* soundBuffer, const char* filename);
+DSFML_AUDIO_API DBool sfSoundBuffer_loadFromFile(sfSoundBuffer* soundBuffer, const char* filename, size_t length);
 
 DSFML_AUDIO_API DBool sfSoundBuffer_loadFromMemory(sfSoundBuffer* soundBuffer, const void* data, size_t sizeInBytes);
 
@@ -51,11 +51,11 @@ DSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_copy(const sfSoundBuffer* soundBuff
 
 DSFML_AUDIO_API void sfSoundBuffer_destroy(sfSoundBuffer* soundBuffer);
 
-DSFML_AUDIO_API DBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* filename);
+DSFML_AUDIO_API DBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* filename, size_t length);
 
 DSFML_AUDIO_API const DShort* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer);
 
-DSFML_AUDIO_API size_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer);
+DSFML_AUDIO_API DUlong sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer);
 
 DSFML_AUDIO_API DUint sfSoundBuffer_getSampleRate(const sfSoundBuffer* soundBuffer);
 

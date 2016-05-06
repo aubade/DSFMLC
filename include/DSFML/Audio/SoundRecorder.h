@@ -46,7 +46,7 @@ DSFML_AUDIO_API void sfSoundRecorder_stop(sfSoundRecorder* soundRecorder);
 
 DSFML_AUDIO_API DUint sfSoundRecorder_getSampleRate(const sfSoundRecorder* soundRecorder);
 
-DSFML_AUDIO_API DBool sfSoundRecorder_setDevice (sfSoundRecorder* soundRecorder, const char * name);
+DSFML_AUDIO_API DBool sfSoundRecorder_setDevice (sfSoundRecorder* soundRecorder, const char * name, size_t length);
 
 DSFML_AUDIO_API const char * sfSoundRecorder_getDevice(const sfSoundRecorder* soundRecorder);
 
