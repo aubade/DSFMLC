@@ -38,6 +38,7 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 #include <DSFML/Window/VideoMode.h>
 #include <DSFML/Window/WindowHandle.h>
 #include <DSFML/Window/Window.h>
+#include <stddef.h>
 
 //Construct a new render window
 DSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_construct(void);

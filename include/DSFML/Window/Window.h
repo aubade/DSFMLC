@@ -37,6 +37,7 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 #include <DSFML/Window/Event.h>
 #include <DSFML/Window/WindowHandle.h>
 #include <DSFML/Window/Types.h>
+#include <stddef.h>
 
 //Construct a new window
 DSFML_WINDOW_API sfWindow* sfWindow_construct(void);

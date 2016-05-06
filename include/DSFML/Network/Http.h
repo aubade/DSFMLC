@@ -35,11 +35,7 @@ All Libraries used by SFML
 // Headers
 #include <DSFML/Network/Export.h>
 #include <DSFML/Network/Types.h>
-
-
-
-
-
+#include <stddef.h>
 
 ///HTTP Request Functions
 

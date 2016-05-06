@@ -31,10 +31,9 @@ All Libraries used by SFML
 #ifndef DSFML_IPADDRESS_H
 #define DSFML_IPADDRESS_H
 
-
 // Headers
 #include <DSFML/Network/Export.h>
-
+#include <stddef.h>
 
 
 //Note: These functions rely on passing an existing array for the ipAddress.

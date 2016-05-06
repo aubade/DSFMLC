@@ -36,7 +36,7 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 #include <DSFML/Graphics/Export.h>
 #include <DSFML/Graphics/Types.h>
 #include <DSFML/System/DStream.hpp>
-
+#include <stddef.h>
 
 //Construct a new shader
 DSFML_GRAPHICS_API sfShader* sfShader_construct(void);

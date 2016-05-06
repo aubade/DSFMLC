@@ -35,6 +35,7 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 #include <DSFML/Audio/Export.h>
 #include <DSFML/Audio/Types.h>
 #include <DSFML/System/DStream.hpp>
+#include <stddef.h>
 
 //Creates the sound file
 DSFML_AUDIO_API sfInputSoundFile* sfInputSoundFile_create();
