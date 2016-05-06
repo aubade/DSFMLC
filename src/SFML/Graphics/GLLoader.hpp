@@ -1033,6 +1033,7 @@ GLAPI void APIENTRY glTexCoordPointer(GLint, GLenum, GLsizei, const GLvoid *);
 GLAPI void APIENTRY glTexSubImage1D(GLenum, GLint, GLint, GLsizei, GLenum, GLenum, const GLvoid *);
 GLAPI void APIENTRY glTexSubImage2D(GLenum, GLint, GLint, GLint, GLsizei, GLsizei, GLenum, GLenum, const GLvoid *);
 GLAPI void APIENTRY glVertexPointer(GLint, GLenum, GLsizei, const GLvoid *);
+GLAPI void APIENTRY glPixelStorei (GLenum, GLint);
 
 enum sfogl_LoadStatus
 {

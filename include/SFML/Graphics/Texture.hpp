@@ -93,7 +93,7 @@ public:
     /// \return True if creation was successful
     ///
     ////////////////////////////////////////////////////////////
-    bool create(unsigned int width, unsigned int height);
+    bool create(unsigned int width, unsigned int height, bool oneChannel = false);
 
     ////////////////////////////////////////////////////////////
     /// \brief Load the texture from a file on disk
@@ -510,6 +510,7 @@ private:
     bool         m_isRepeated;    ///< Is the texture in repeat mode?
     mutable bool m_pixelsFlipped; ///< To work around the inconsistency in Y orientation
     bool         m_fboAttachment; ///< Is this texture owned by a framebuffer object?
+    bool         m_oneChannel;    ///< Is this texture one-channel
     Uint64       m_cacheId;       ///< Unique number that identifies the texture to the render target's cache
 };
 

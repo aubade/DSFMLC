@@ -42,7 +42,7 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 DSFML_GRAPHICS_API sfTexture* sfTexture_construct(void);
 
 //Create a new texture
-DSFML_GRAPHICS_API DBool sfTexture_create(sfTexture* texture, DUint width, DUint height);
+DSFML_GRAPHICS_API DBool sfTexture_create(sfTexture* texture, DUint width, DUint height, DBool oneChannel);
 
 //Create a new texture from a file
 DSFML_GRAPHICS_API DBool sfTexture_loadFromFile(sfTexture* texture, const char* filename, DInt left, DInt top, DInt width, DInt height);

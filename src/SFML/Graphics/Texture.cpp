@@ -79,6 +79,7 @@ m_isSmooth     (false),
 m_isRepeated   (false),
 m_pixelsFlipped(false),
 m_fboAttachment(false),
+m_oneChannel   (false),
 m_cacheId      (getUniqueId())
 {
 }
@@ -93,6 +94,7 @@ m_isSmooth     (copy.m_isSmooth),
 m_isRepeated   (copy.m_isRepeated),
 m_pixelsFlipped(false),
 m_fboAttachment(false),
+m_oneChannel   (copy.m_oneChannel),
 m_cacheId      (getUniqueId())
 {
     if (copy.m_texture)
@@ -115,7 +117,7 @@ Texture::~Texture()
 
 
 ////////////////////////////////////////////////////////////
-bool Texture::create(unsigned int width, unsigned int height)
+bool Texture::create(unsigned int width, unsigned int height, bool oneChannel)
 {
     // Check if texture parameters are valid before creating it
     if ((width == 0) || (height == 0))
@@ -144,6 +146,7 @@ bool Texture::create(unsigned int width, unsigned int height)
     m_actualSize    = actualSize;
     m_pixelsFlipped = false;
     m_fboAttachment = false;
+    m_oneChannel = oneChannel;
 
     ensureGlContext();
 
@@ -177,9 +180,20 @@ bool Texture::create(unsigned int width, unsigned int height)
         }
     }
 
+    if (m_oneChannel)
+    {
+    	glCheck(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
+    	glCheck(glPixelStorei(GL_PACK_ALIGNMENT, 1));
+	}
+	else
+	{
+		glCheck(glPixelStorei(GL_UNPACK_ALIGNMENT, 4));
+		glCheck(glPixelStorei(GL_PACK_ALIGNMENT, 4));
+	}
+
     // Initialize the texture
     glCheck(glBindTexture(GL_TEXTURE_2D, m_texture));
-    glCheck(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_actualSize.x, m_actualSize.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL));
+   	glCheck(glTexImage2D(GL_TEXTURE_2D, 0, m_oneChannel ? GL_RED : GL_RGBA, m_actualSize.x, m_actualSize.y, 0, m_oneChannel ? GL_RED : GL_RGBA, GL_UNSIGNED_BYTE, NULL));
     glCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, m_isRepeated ? GL_REPEAT : (textureEdgeClamp ? GLEXT_GL_CLAMP_TO_EDGE : GLEXT_GL_CLAMP)));
     glCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, m_isRepeated ? GL_REPEAT : (textureEdgeClamp ? GLEXT_GL_CLAMP_TO_EDGE : GLEXT_GL_CLAMP)));
     glCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, m_isSmooth ? GL_LINEAR : GL_NEAREST));
@@ -226,7 +240,7 @@ bool Texture::loadFromImage(const Image& image, const IntRect& area)
        ((area.left <= 0) && (area.top <= 0) && (area.width >= width) && (area.height >= height)))
     {
         // Load the entire image
-        if (create(image.getSize().x, image.getSize().y))
+        if (create(image.getSize().x, image.getSize().y, false))
         {
             update(image);
 
@@ -243,6 +257,11 @@ bool Texture::loadFromImage(const Image& image, const IntRect& area)
     }
     else
     {
+        if (m_oneChannel)
+        {
+        	err() << "Cannot load one-channel textures from sf::Image." << std::endl;
+        	return false;
+        }
         // Load a sub-area of the image
 
         // Adjust the rectangle to the size of the image
@@ -391,9 +410,20 @@ void Texture::update(const Uint8* pixels, unsigned int width, unsigned int heigh
         // Make sure that the current texture binding will be preserved
         priv::TextureSaver save;
 
-        // Copy pixels from the given array to the texture
+        if (m_oneChannel)
+        {
+        	glCheck(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
+        	glCheck(glPixelStorei(GL_PACK_ALIGNMENT, 1));
+        }
+		else
+		{
+			glCheck(glPixelStorei(GL_UNPACK_ALIGNMENT, 4));
+			glCheck(glPixelStorei(GL_PACK_ALIGNMENT, 4));
+		}
+
+		// Copy pixels from the given array to the texture
         glCheck(glBindTexture(GL_TEXTURE_2D, m_texture));
-        glCheck(glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, width, height, GL_RGBA, GL_UNSIGNED_BYTE, pixels));
+        glCheck(glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, width, height, m_oneChannel ? GL_RED : GL_RGBA, GL_UNSIGNED_BYTE, pixels));
         m_pixelsFlipped = false;
         m_cacheId = getUniqueId();
     }
