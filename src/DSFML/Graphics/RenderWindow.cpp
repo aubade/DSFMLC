@@ -88,7 +88,7 @@ sfRenderWindow* sfRenderWindow_constructFromHandle(sfWindowHandle handle, DUint 
     return renderWindow;
 }
 
-void sfRenderWindow_createFromSettings(sfRenderWindow* renderWindow, DUint width, DUint height, DUint bitsPerPixel, const DUint* title, DInt style, DUint depthBits, DUint stencilBits, DUint antialiasingLevel, DUint majorVersion, DUint minorVersion)
+void sfRenderWindow_createFromSettings(sfRenderWindow* renderWindow, DUint width, DUint height, DUint bitsPerPixel, const DUint* title, size_t titleLength, DInt style, DUint depthBits, DUint stencilBits, DUint antialiasingLevel, DUint majorVersion, DUint minorVersion)
 {
     // Convert video mode
     sf::VideoMode videoMode(width, height, bitsPerPixel);
@@ -102,7 +102,7 @@ void sfRenderWindow_createFromSettings(sfRenderWindow* renderWindow, DUint width
     params.majorVersion      = majorVersion;
     params.minorVersion      = minorVersion;
 
-    renderWindow->This.create(videoMode, title, style, params);
+    renderWindow->This.create(videoMode, sf::String(std::basic_string<DUint>(title)), style, params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
 }
