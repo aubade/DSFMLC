@@ -1,6 +1,7 @@
 
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/SFML/Network)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/SFML/Network)
+
 set(DINCROOT ${PROJECT_SOURCE_DIR}/include/DSFML/Network)
 set(DSRCROOT ${PROJECT_SOURCE_DIR}/src/DSFML/Network)
 
@@ -58,7 +59,7 @@ set(SRC
 )
 
 # add platform specific sources
-if(WINDOWS)
+if(SFML_OS_WINDOWS)
     set(SRC
         ${SRC}
         ${SRCROOT}/Win32/SocketImpl.cpp
@@ -76,15 +77,17 @@ source_group("" FILES ${SRC})
 
 # build the list of external libraries to link
 set(NETWORK_EXT_LIBS)
-if(WINDOWS)
+if(SFML_OS_WINDOWS)
     set(NETWORK_EXT_LIBS ${NETWORK_EXT_LIBS} ws2_32)
 endif()
 
+#Because we have changed the name of the target library from sfml-network to dsfmlc-network,
+#we need to make sure the correct export gets defined.
 if(BUILD_SHARED_LIBS)
     add_definitions(-DSFML_NETWORK_EXPORTS)
 endif()
 
-# define the sfml-network target
+# define the dsfml-network target
 sfml_add_library(dsfmlc-network
                  SOURCES ${SRC}
                  DEPENDS dsfmlc-system

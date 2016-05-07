@@ -145,9 +145,13 @@ void sfRenderTexture_mapCoordsToPixel(const sfRenderTexture* renderTexture, floa
 
 void sfRenderTexture_drawPrimitives(sfRenderTexture* renderTexture,
                                     const void* vertices, DUint vertexCount,
-                                    DInt type, DInt blendMode,const float* transform, const sfTexture* texture, const sfShader* shader)
+                                    DInt type, DInt colorSrcFactor, DInt colorDstFactor,
+									DInt colorEquation, DInt alphaSrcFactor, DInt alphaDstFactor,
+									DInt alphaEquation, const float* transform, const sfTexture*
+									texture, const sfShader* shader)
 {
-    renderTexture->This.draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount, static_cast<sf::PrimitiveType>(type), createRenderStates(blendMode, transform, texture, shader));
+    renderTexture->This.draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount, static_cast<sf::PrimitiveType>(type), createRenderStates(colorSrcFactor,
+    		colorDstFactor, colorEquation, alphaSrcFactor, alphaDstFactor, alphaEquation, transform, texture, shader));
 }
 
 

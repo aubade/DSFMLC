@@ -38,20 +38,20 @@ sfFont* sfFont_construct()
 {
     sfFont* font = new sfFont;
     font->fontTexture = new sfTexture;
-    
+
     //Delete the internal texture and set OwnInstance to false
     //This will allow us to set the sf::Texture vatiable to the address
     //of the one returned by the font without copying it or destroying it.
     delete font->fontTexture->This;
     font->fontTexture->This = 0;
     font->fontTexture->OwnInstance = false;
-    
+
     return font;
 }
 
-DBool sfFont_loadFromFile(sfFont* font, const char* filename)
+DBool sfFont_loadFromFile(sfFont* font, const char* filename, size_t length)
 {
-    return (font->This.loadFromFile(filename))?DTrue:DFalse;
+    return (font->This.loadFromFile(std::string(filename, length)))?DTrue:DFalse;
 }
 
 
@@ -86,7 +86,7 @@ void sfFont_destroy(sfFont* font)
 
 
 
-void sfFont_getGlyph(const sfFont* font, DUint codePoint, DInt characterSize, DBool bold, DInt* glyphAdvance, DInt* glyphBoundsLeft, DInt* glyphBoundsTop, DInt* glyphBoundsWidth, DInt* glyphBoundsHeight, DInt* glyphTextRectLeft, DInt* glyphTextRectTop, DInt* glyphTextRectWidth, DInt* glyphTextRectHeight)
+void sfFont_getGlyph(const sfFont* font, DUint codePoint, DInt characterSize, DBool bold, float* glyphAdvance, float* glyphBoundsLeft, float* glyphBoundsTop, float* glyphBoundsWidth, float* glyphBoundsHeight, DInt* glyphTextRectLeft, DInt* glyphTextRectTop, DInt* glyphTextRectWidth, DInt* glyphTextRectHeight)
 {
 
     sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold == DTrue);
@@ -106,18 +106,28 @@ void sfFont_getGlyph(const sfFont* font, DUint codePoint, DInt characterSize, DB
 
 
 
-DInt sfFont_getKerning(const sfFont* font, DUint first, DUint second, DUint characterSize)
+float sfFont_getKerning(const sfFont* font, DUint first, DUint second, DUint characterSize)
 {
     return font->This.getKerning(first, second, characterSize);
 }
 
 
 
-DInt sfFont_getLineSpacing(const sfFont* font, DUint characterSize)
+float sfFont_getLineSpacing(const sfFont* font, DUint characterSize)
 {
     return font->This.getLineSpacing(characterSize);
 }
 
+
+float sfFont_getUnderlinePosition(const sfFont* font, DUint characterSize)
+{
+    return font->This.getUnderlinePosition(characterSize);
+}
+
+float sfFont_getUnderlineThickness(const sfFont* font, DUint characterSize)
+{
+    return font->This.getUnderlineThickness(characterSize);
+}
 
 
 sfTexture* sfFont_getTexturePtr(const sfFont* font)

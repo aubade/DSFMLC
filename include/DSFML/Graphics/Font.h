@@ -42,7 +42,7 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 DSFML_GRAPHICS_API sfFont* sfFont_construct(void);
 
 //Load a new font from a file
-DSFML_GRAPHICS_API DBool sfFont_loadFromFile(sfFont* font, const char* filename);
+DSFML_GRAPHICS_API DBool sfFont_loadFromFile(sfFont* font, const char* filename, size_t length);
 
 
 //Load a new image font a file in memory
@@ -62,16 +62,21 @@ DSFML_GRAPHICS_API void sfFont_destroy(sfFont* font);
 
 
 //Get a glyph in a font
-DSFML_GRAPHICS_API void sfFont_getGlyph(const sfFont* font, DUint codePoint, DInt characterSize, DBool bold, DInt* glyphAdvance, DInt* glyphBoundsLeft, DInt* glyphBoundsTop, DInt* glyphBoundsWidth, DInt* glyphBoundsHeight, DInt* glyphTextRectLeft, DInt* glyphTextRectTop, DInt* glyphTextRectWidth, DInt* glyphTextRectHeight);
+DSFML_GRAPHICS_API void sfFont_getGlyph(const sfFont* font, DUint codePoint, DInt characterSize, DBool bold, float* glyphAdvance, float* glyphBoundsLeft, float* glyphBoundsTop, float* glyphBoundsWidth, float* glyphBoundsHeight, DInt* glyphTextRectLeft, DInt* glyphTextRectTop, DInt* glyphTextRectWidth, DInt* glyphTextRectHeight);
 
 
 //Get the kerning value corresponding to a given pair of characters in a font
-DSFML_GRAPHICS_API DInt sfFont_getKerning(const sfFont* font, DUint first, DUint second, DUint characterSize);
+DSFML_GRAPHICS_API float sfFont_getKerning(const sfFont* font, DUint first, DUint second, DUint characterSize);
 
 
 //Get the line spacing value
-DSFML_GRAPHICS_API DInt sfFont_getLineSpacing(const sfFont* font, DUint characterSize);
+DSFML_GRAPHICS_API float sfFont_getLineSpacing(const sfFont* font, DUint characterSize);
 
+//Get the position of the underline
+DSFML_GRAPHICS_API float sfFont_getUnderlinePosition (const sfFont * font, DUint characterSize);
+
+//Get the thickness of the underline
+DSFML_GRAPHICS_API float sfFont_getUnderlineThickness (const sfFont * font, DUint charactersize);
 
 //Get the texture pointer for a particular font
 DSFML_GRAPHICS_API sfTexture* sfFont_getTexturePtr(const sfFont* font);

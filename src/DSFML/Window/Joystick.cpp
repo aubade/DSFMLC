@@ -68,6 +68,30 @@ float sfJoystick_getAxisPosition(DUint joystick, DInt axis)
     return sf::Joystick::getAxisPosition(joystick, static_cast<sf::Joystick::Axis>(axis));
 }
 
+size_t sfJoystick_getIdentificationNameLength (DUint joystick)
+{
+	return sf::Joystick::getIdentification(joystick).name.getSize();
+}
+
+void sfJoystick_getIdentificationName (DUint joystick, DUint * nameBuffer)
+{
+	//On Linux, just returning the pointer to the name string works fine, but on windows it corrupts during passing.
+	sf::Joystick::Identification sfmlIdentification = sf::Joystick::getIdentification(joystick);
+
+	for (unsigned int i = 0; i < sfmlIdentification.name.getSize(); i++)
+	{
+		nameBuffer[i] = sfmlIdentification.name[i];
+	}
+
+}
+
+void sfJoystick_getIdentification(DUint joystick, DUint * vendorId, DUint* productId)
+{
+	sf::Joystick::Identification sfmlIdentification = sf::Joystick::getIdentification(joystick);
+
+	*vendorId = sfmlIdentification.vendorId;
+	*productId = sfmlIdentification.productId;
+}
 
 
 void sfJoystick_update(void)

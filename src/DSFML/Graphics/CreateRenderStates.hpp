@@ -33,18 +33,28 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 
 // Headers
 #include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/BlendMode.hpp>
 #include <DSFML/Graphics/CreateTransform.hpp>
 #include <DSFML/Graphics/TextureStruct.h>
 #include <DSFML/Graphics/ShaderStruct.h>
 
 
 // Convert sfRenderStates* to sf::RenderStates
-inline sf::RenderStates createRenderStates(DInt blendMode,const float* transform, const sfTexture* texture, const sfShader* shader)
+inline sf::RenderStates createRenderStates(DInt colorSrcFactor, DInt colorDstFactor, DInt colorEquation,
+		DInt alphaSrcFactor, DInt alphaDstFactor, DInt alphaEquation,
+		const float* transform, const sfTexture* texture, const sfShader* shader)
 {
     sf::RenderStates sfmlStates;
+    sf::BlendMode blendMode;
 
+    blendMode.colorSrcFactor = static_cast<sf::BlendMode::Factor>(colorSrcFactor);
+    blendMode.colorDstFactor = static_cast<sf::BlendMode::Factor>(colorDstFactor);
+    blendMode.colorEquation = static_cast<sf::BlendMode::Equation>(colorEquation);
+    blendMode.alphaSrcFactor = static_cast<sf::BlendMode::Factor>(alphaSrcFactor);
+    blendMode.alphaDstFactor = static_cast<sf::BlendMode::Factor>(alphaDstFactor);
+    blendMode.alphaEquation = static_cast<sf::BlendMode::Equation>(alphaEquation);
     
-    sfmlStates.blendMode = static_cast<sf::BlendMode>(blendMode);
+    sfmlStates.blendMode = blendMode;
     sfmlStates.transform = createTransform(transform);
     sfmlStates.texture = texture ? texture->This : NULL;
     sfmlStates.shader = shader ? &shader->This : NULL;
