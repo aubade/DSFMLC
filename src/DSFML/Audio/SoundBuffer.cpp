@@ -78,7 +78,7 @@ const DShort* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer)
     return soundBuffer->This.getSamples();
 }
 
-DUlong sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
+size_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
 {
     return soundBuffer->This.getSampleCount();
 }

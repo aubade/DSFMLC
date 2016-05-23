@@ -55,7 +55,7 @@ DSFML_AUDIO_API DBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer,
 
 DSFML_AUDIO_API const DShort* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer);
 
-DSFML_AUDIO_API DUlong sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer);
+DSFML_AUDIO_API size_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer);
 
 DSFML_AUDIO_API DUint sfSoundBuffer_getSampleRate(const sfSoundBuffer* soundBuffer);
 
