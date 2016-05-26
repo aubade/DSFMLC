@@ -46,7 +46,6 @@ sfTexture* sfTexture_construct(void)
 DBool sfTexture_create(sfTexture* texture, DUint width, DUint height, DBool oneChannel)
 {
     return texture->This->create(width, height, oneChannel == DTrue)?DTrue:DFalse;
-
 }
 
 
