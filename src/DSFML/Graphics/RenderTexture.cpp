@@ -86,7 +86,7 @@ void sfRenderTexture_setView(sfRenderTexture* renderTexture, float centerX, floa
 {
 	sf::View view;
 	view.setCenter(centerX, centerY);
-	view.setSize(centerX, centerY);
+	view.setSize(sizeX, sizeY);
 	view.setRotation(rotation);
 	view.setViewport(sf::FloatRect(viewportLeft, viewportTop, viewportWidth, viewportHeight));
     renderTexture->This.setView(view);

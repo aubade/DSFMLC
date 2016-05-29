@@ -321,7 +321,7 @@ void sfRenderWindow_setView(sfRenderWindow* renderWindow, float centerX, float c
 {
 	sf::View view;
 	view.setCenter(centerX, centerY);
-	view.setSize(centerX, centerY);
+	view.setSize(sizeX, sizeY);
 	view.setRotation(rotation);
 	view.setViewport(sf::FloatRect(viewportLeft, viewportTop, viewportWidth, viewportHeight));
     renderWindow->This.setView(view);
