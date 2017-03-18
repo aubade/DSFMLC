@@ -37,6 +37,9 @@
 #include <cassert>
 #include <cstring>
 
+#ifndef GL_RED
+#define GL_RED 0x1903
+#endif 
 
 namespace
 {
