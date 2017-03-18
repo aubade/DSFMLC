@@ -36,7 +36,7 @@
 #ifdef SFML_SYSTEM_ANDROID
     #include <SFML/System/Android/Activity.hpp>
 #endif
-#ifdef SFML_SYSTEM_LINUX
+#if defined(SFML_SYSTEM_LINUX) && !defined(SFML_RPI)
     #include <X11/Xlib.h>
 #endif
 
@@ -254,7 +254,7 @@ EGLConfig EglContext::getBestConfig(EGLDisplay display, unsigned int bitsPerPixe
 }
 
 
-#ifdef SFML_SYSTEM_LINUX
+#if defined(SFML_SYSTEM_LINUX) && !defined(SFML_RPI)
 ////////////////////////////////////////////////////////////
 XVisualInfo EglContext::selectBestVisual(::Display* XDisplay, unsigned int bitsPerPixel, const ContextSettings& settings)
 {
