@@ -183,6 +183,12 @@ if(SFML_COMPILER_GCC)
     set_source_files_properties(${SRCROOT}/ImageLoader.cpp PROPERTIES COMPILE_FLAGS -fno-strict-aliasing)
 endif()
 
+# see https://bugs.launchpad.net/ubuntu/+source/gcc-5/+bug/1568899
+if(SFML_COMPILER_GCC AND BUILD_SHARED_LIBS)
+    message(WARNING "Applying workaround for https://bugs.launchpad.net/ubuntu/+source/gcc-5/+bug/1568899")
+    list(APPEND GRAPHICS_EXT_LIBS "-lgcc_s -lgcc")
+endif()
+ 
 #Because we have changed the name of the target library from sfml-graphics to dsfmlc-graphics,
 #we need to make sure the correct export gets defined.
 if(BUILD_SHARED_LIBS)
