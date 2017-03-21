@@ -129,7 +129,6 @@ bool SoundFileReaderOgg::open(InputStream& stream, Info& info)
 ////////////////////////////////////////////////////////////
 void SoundFileReaderOgg::seek(Uint64 sampleOffset)
 {
-    assert(m_vorbis.datasource);
 
     ov_pcm_seek(&m_vorbis, sampleOffset / m_channelCount);
 }
@@ -138,7 +137,6 @@ void SoundFileReaderOgg::seek(Uint64 sampleOffset)
 ////////////////////////////////////////////////////////////
 Uint64 SoundFileReaderOgg::read(Int16* samples, Uint64 maxCount)
 {
-    assert(m_vorbis.datasource);
 
     // Try to read the requested number of samples, stop only on error or end of file
     Uint64 count = 0;

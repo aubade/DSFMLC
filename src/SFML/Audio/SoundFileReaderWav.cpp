@@ -133,7 +133,6 @@ bool SoundFileReaderWav::open(InputStream& stream, Info& info)
 ////////////////////////////////////////////////////////////
 void SoundFileReaderWav::seek(Uint64 sampleOffset)
 {
-    assert(m_stream);
 
     m_stream->seek(m_dataStart + sampleOffset * m_bytesPerSample);
 }
@@ -142,7 +141,6 @@ void SoundFileReaderWav::seek(Uint64 sampleOffset)
 ////////////////////////////////////////////////////////////
 Uint64 SoundFileReaderWav::read(Int16* samples, Uint64 maxCount)
 {
-    assert(m_stream);
 
     Uint64 count = 0;
     while (count < maxCount)
@@ -190,7 +188,6 @@ Uint64 SoundFileReaderWav::read(Int16* samples, Uint64 maxCount)
 ////////////////////////////////////////////////////////////
 bool SoundFileReaderWav::parseHeader(Info& info)
 {
-    assert(m_stream);
 
     // If we are here, it means that the first part of the header
     // (the format) has already been checked

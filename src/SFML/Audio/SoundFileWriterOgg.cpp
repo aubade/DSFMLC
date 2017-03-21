@@ -133,7 +133,6 @@ void SoundFileWriterOgg::write(const Int16* samples, Uint64 count)
     // Prepare a buffer to hold our samples
     int frameCount = static_cast<int>(count / m_channelCount);
     float** buffer = vorbis_analysis_buffer(&m_state, frameCount);
-    assert(buffer);
 
     // Write the samples to the buffer, converted to float
     for (int i = 0; i < frameCount; ++i)

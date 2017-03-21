@@ -138,7 +138,6 @@ namespace
                         sample = buffer[j][i] >> 16;
                         break;
                     default:
-                        assert(false);
                         break;
                 }
 
@@ -254,7 +253,6 @@ bool SoundFileReaderFlac::open(InputStream& stream, Info& info)
 ////////////////////////////////////////////////////////////
 void SoundFileReaderFlac::seek(Uint64 sampleOffset)
 {
-    assert(m_decoder);
 
     // Reset the callback data (the "write" callback will be called)
     m_clientData.buffer = NULL;
@@ -268,7 +266,6 @@ void SoundFileReaderFlac::seek(Uint64 sampleOffset)
 ////////////////////////////////////////////////////////////
 Uint64 SoundFileReaderFlac::read(Int16* samples, Uint64 maxCount)
 {
-    assert(m_decoder);
 
     // If there are leftovers from previous call, use it first
     Uint64 left = m_clientData.leftovers.size();

@@ -128,7 +128,6 @@ bool SoundFileWriterWav::open(const std::string& filename, unsigned int sampleRa
 ////////////////////////////////////////////////////////////
 void SoundFileWriterWav::write(const Int16* samples, Uint64 count)
 {
-    assert(m_file.good());
 
     m_sampleCount += count;
 
@@ -140,7 +139,6 @@ void SoundFileWriterWav::write(const Int16* samples, Uint64 count)
 ////////////////////////////////////////////////////////////
 bool SoundFileWriterWav::writeHeader(unsigned int sampleRate, unsigned int channelCount)
 {
-    assert(m_file.good());
 
     // Write the main chunk ID
     char mainChunkId[4] = {'R', 'I', 'F', 'F'};

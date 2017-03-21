@@ -29,12 +29,12 @@ All Libraries used by SFML - For a full list see http://www.sfml-dev.org/license
 */
 
 //Headers
-#if defined(SFML_SYSTEM_LINUX) && !defined(SFML_RPI)
 #include <X11/Xlib.h>
 #include <DSFML/System/Threads.h>
 
 void linux_XInitThreads(void)
 {
+#if defined(SFML_SYSTEM_LINUX) && !defined(SFML_RPI)
 	XInitThreads();
-}
 #endif
+}
